@@ -1,0 +1,35 @@
+<section class="relative isolate flex min-h-screen items-center justify-center overflow-hidden bg-midnight-plum px-4 py-16 sm:px-8">
+  <div
+    class="absolute inset-0 -z-30 bg-cover bg-center"
+    [style.background-image]="'url(' + heroImage + ')'"
+  ></div>
+  <div class="absolute inset-0 -z-20 bg-midnight-plum/80 backdrop-blur-sm"></div>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-midnight-plum/95 via-deep-wine/85 to-royal-burgundy/70"></div>
+  <div class="absolute inset-0 -z-10 bg-grain opacity-60"></div>
+
+  <div class="pointer-events-none absolute -left-24 top-16 h-72 w-72 rounded-full border border-antique-gold/10"></div>
+  <div class="pointer-events-none absolute -right-20 bottom-10 h-96 w-96 rounded-full border border-champagne/10"></div>
+
+  <div class="absolute left-5 top-6 z-10 sm:left-10 sm:top-8">
+    <app-logo variant="dark" />
+  </div>
+
+  <a
+    routerLink="/"
+    class="absolute right-5 top-8 z-10 flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-champagne/60 transition hover:text-antique-gold sm:right-10"
+  >
+    <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    Back to ashram
+  </a>
+
+  <div class="relative z-10 w-full max-w-[460px]">
+    <div class="glass-panel rounded-[2rem] p-6 sm:rounded-[2.5rem] sm:p-10">
+      <router-outlet />
+    </div>
+    <p class="mt-6 text-center text-[0.58rem] uppercase tracking-[0.28em] text-champagne/35">
+      Sacred access · guarded with care
+    </p>
+  </div>
+</section>

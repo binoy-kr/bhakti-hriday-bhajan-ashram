@@ -1,0 +1,46 @@
+<section
+  class="relative isolate flex items-end overflow-hidden bg-midnight-plum"
+  [class.min-h-[62vh]]="size === 'normal'"
+  [class.min-h-[78vh]]="size === 'tall'"
+>
+  @if (image) {
+    <div
+      class="absolute inset-0 -z-20 bg-cover bg-center"
+      [style.background-image]="'url(' + image + ')'"
+      data-parallax
+    ></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-midnight-plum via-midnight-plum/85 to-midnight-plum/25"></div>
+    <div class="absolute inset-0 -z-10 bg-grain opacity-70"></div>
+  }
+
+  <div class="bhb-container relative pb-16 pt-32 sm:pb-24 sm:pt-40">
+    <div class="max-w-4xl">
+      @if (eyebrow) {
+        <span class="eyebrow mb-6">{{ eyebrow }}</span>
+      }
+
+      <h1
+        class="text-balance text-warm-ivory"
+        [ngClass]="size === 'tall' ? 'display-xl' : 'display-lg'"
+        data-reveal
+      >
+        {{ title }}
+      </h1>
+
+      @if (description) {
+        <p class="mt-7 max-w-2xl text-pretty text-sm leading-8 text-champagne/75 sm:text-lg" data-reveal>
+          {{ description }}
+        </p>
+      }
+
+      <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>
+        <ng-content />
+      </div>
+    </div>
+  </div>
+
+  <div class="pointer-events-none absolute bottom-8 right-8 hidden items-center gap-3 text-champagne/50 lg:flex">
+    <span class="h-px w-16 bg-antique-gold/60"></span>
+    <span class="text-[0.6rem] font-semibold uppercase tracking-[0.35em]">Vrindavan · India</span>
+  </div>
+</section>

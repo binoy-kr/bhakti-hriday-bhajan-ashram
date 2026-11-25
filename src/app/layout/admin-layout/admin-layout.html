@@ -1,0 +1,39 @@
+<div class="flex min-h-screen bg-warm-ivory text-midnight-plum">
+  <div class="sticky top-0 hidden h-screen shrink-0 md:block">
+    <app-admin-sidebar />
+  </div>
+
+  <div class="min-w-0 flex-1">
+    <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-midnight-plum/10 bg-warm-ivory/95 px-5 backdrop-blur-xl md:hidden">
+      <span class="font-display text-xl tracking-[0.12em]">BHB · Admin</span>
+      <div class="flex items-center gap-3">
+        <span class="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-royal-burgundy">Dashboard</span>
+        <button
+          type="button"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-midnight-plum/15 text-midnight-plum"
+          [attr.aria-expanded]="menuOpen()"
+          aria-controls="bhb-admin-mobile-sidebar"
+          aria-label="Toggle admin navigation"
+          (click)="toggleMenu()"
+        >
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-[1500px] px-5 py-8 sm:px-8 sm:py-10 lg:px-12">
+      <router-outlet />
+    </main>
+  </div>
+
+  @if (menuOpen()) {
+    <div class="fixed inset-0 z-40 md:hidden">
+      <button type="button" class="absolute inset-0 bg-midnight-plum/60 backdrop-blur-sm" aria-label="Close admin navigation" (click)="menuOpen.set(false)"></button>
+      <div id="bhb-admin-mobile-sidebar" class="absolute inset-y-0 left-0 w-72 shadow-gold">
+        <app-admin-sidebar />
+      </div>
+    </div>
+  }
+</div>

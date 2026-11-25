@@ -1,0 +1,59 @@
+<div
+  class="fixed inset-0 z-[900] flex items-center justify-center bg-midnight-plum/95 p-4 backdrop-blur-xl sm:p-10"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Devotional image preview"
+  (click)="$event.target === $event.currentTarget && closed.emit()"
+>
+  <button
+    #closeButton
+    type="button"
+    class="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-champagne/25 text-champagne transition hover:border-antique-gold hover:text-antique-gold"
+    aria-label="Close image preview"
+    (click)="closed.emit()"
+  >
+    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+    </svg>
+  </button>
+
+  @if (current; as item) {
+    <div class="flex max-h-full w-full max-w-6xl flex-col items-center gap-5">
+      <div class="relative flex min-h-0 w-full items-center justify-center">
+        <img
+          [src]="item.src"
+          [alt]="item.alt"
+          class="max-h-[72vh] w-auto max-w-full rounded-[1.5rem] object-contain shadow-[0_30px_120px_color-mix(in_srgb,var(--bhb-midnight-plum)_60%,transparent)]"
+        />
+        <button
+          type="button"
+          class="absolute left-3 flex h-11 w-11 items-center justify-center rounded-full bg-midnight-plum/70 text-champagne transition hover:bg-antique-gold hover:text-midnight-plum sm:-left-14"
+          aria-label="Previous image"
+          (click)="previous()"
+        >
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="absolute right-3 flex h-11 w-11 items-center justify-center rounded-full bg-midnight-plum/70 text-champagne transition hover:bg-antique-gold hover:text-midnight-plum sm:-right-14"
+          aria-label="Next image"
+          (click)="next()"
+        >
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex w-full items-center justify-between gap-4 px-2 text-champagne">
+        <div>
+          <p class="text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-antique-gold">{{ item.category }}</p>
+          <p class="mt-1 font-display text-2xl">{{ item.title }}</p>
+        </div>
+        <p class="text-xs tracking-[0.2em] text-champagne/50">{{ index + 1 }} / {{ images.length }}</p>
+      </div>
+    </div>
+  }
+</div>

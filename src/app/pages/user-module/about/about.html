@@ -1,0 +1,283 @@
+<div #aboutRoot class="overflow-hidden bg-warm-ivory font-body">
+  <app-page-hero
+    eyebrow="Our story"
+    title="A sanctuary shaped by devotion."
+    description="Bhakti Hriday Bhajan Ashram is a place where ancient melodies, thoughtful silence and selfless service meet."
+    [image]="content.heroImage"
+    size="tall"
+    tone="dark"
+  >
+    <a routerLink="/services" class="btn-primary" data-magnetic>Discover the path</a>
+    <a routerLink="/festivals" class="btn-outline-light" data-magnetic>See the celebrations</a>
+  </app-page-hero>
+
+  <section class="section-space relative">
+    <div class="bhb-container grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-7" data-reveal>
+        <span class="eyebrow">Our mission</span>
+        <h2 class="mt-7 display-lg text-midnight-plum text-balance">
+          To make the divine feel <span class="italic text-royal-burgundy">close enough to hear.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:pt-16" data-reveal>
+        <p class="body-lg">
+          We began with a simple wish: to offer a place where the heart can rest, the voice can sing and every guest is received as family.
+        </p>
+        <p class="mt-6 text-sm leading-8 text-charcoal/60">
+          Here, bhajan is not performance and seva is not obligation. Each is a way of turning attention toward love — gently, repeatedly, with care for every detail.
+        </p>
+        <a
+          routerLink="/services"
+          class="mt-9 inline-flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-royal-burgundy transition hover:text-antique-gold"
+        >
+          Walk the path <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="bhb-container mt-16 grid gap-8 border-t border-antique-gold/30 pt-10 sm:grid-cols-3" data-reveal>
+      @for (stat of content.stats.slice(0, 3); track stat.label) {
+        <div>
+          <p class="font-display text-4xl text-royal-burgundy sm:text-5xl">{{ stat.value }}</p>
+          <p class="mt-2 text-[0.58rem] font-semibold uppercase tracking-[0.24em] text-charcoal/50">{{ stat.label }}</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="relative isolate overflow-hidden bg-midnight-plum py-20 text-warm-ivory sm:py-28">
+    <div class="pointer-events-none absolute -left-40 top-10 h-[28rem] w-[28rem] rounded-full bg-royal-burgundy/25 blur-[120px]"></div>
+    <div class="bhb-container relative grid gap-14 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5" data-reveal>
+        <span class="eyebrow">Our vision</span>
+        <h2 class="mt-7 display-md text-balance">Ancient wisdom, held with contemporary grace.</h2>
+        <p class="mt-7 max-w-lg text-sm leading-8 text-champagne/70 sm:text-base">
+          We imagine an ashram that feels both timeless and alive — where sacred music, quiet study, flower offerings and community care belong to the same rhythm.
+        </p>
+        <p class="mt-5 max-w-lg text-sm leading-8 text-champagne/55">
+          Beauty is not decoration here. It is an invitation to slow down, notice and remember what the heart already knows.
+        </p>
+      </div>
+      <div class="relative lg:col-span-7">
+        <div class="image-mask relative aspect-[4/5] border border-champagne/15 sm:aspect-[16/11]" data-parallax>
+          <img
+            [src]="content.gallery[6].src"
+            [alt]="content.gallery[6].alt"
+            loading="lazy"
+            class="h-full w-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight-plum/85 via-midnight-plum/10 to-transparent"></div>
+        </div>
+        <div
+          class="glass-panel absolute -bottom-8 left-5 right-5 p-6 sm:bottom-8 sm:left-auto sm:right-8 sm:w-80"
+          data-reveal
+        >
+          <p class="text-[0.58rem] font-semibold uppercase tracking-[0.26em] text-antique-gold">The living practice</p>
+          <p class="mt-3 font-display text-2xl leading-snug">Darshan, kirtan and seva as one unbroken melody.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space relative">
+    <div class="bhb-container grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+      <div class="lg:col-span-4" data-reveal>
+        <span class="eyebrow">Spiritual philosophy</span>
+        <h2 class="mt-7 display-md text-midnight-plum text-balance">Love is the simplest form of knowing.</h2>
+        <p class="mt-7 text-sm leading-8 text-charcoal/65">
+          Our practice follows the path of bhakti: attention offered again and again until the ordinary becomes luminous.
+        </p>
+        <p class="mt-5 text-sm leading-8 text-charcoal/55">
+          The flute, the lamp and the shared meal are not separate lessons. Each asks the same question — can we be fully present with the divine and with one another?
+        </p>
+      </div>
+      <div class="relative lg:col-span-8">
+        <app-image-frame
+          class="block"
+          [src]="content.gallery[4].src"
+          [alt]="content.gallery[4].alt"
+          caption="The listening gopis · Kangra painting"
+          ratio="portrait"
+        />
+        <div
+          class="absolute -bottom-6 right-4 hidden w-56 border border-antique-gold/40 bg-midnight-plum p-5 text-warm-ivory shadow-soft sm:block"
+          data-reveal
+        >
+          <p class="font-display text-3xl italic text-antique-gold">śravaṇam</p>
+          <p class="mt-2 text-[0.58rem] uppercase tracking-[0.22em] text-champagne/60">Listening as devotion</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="principles-section relative overflow-hidden bg-champagne/30 py-20 sm:py-28">
+    <div class="bhb-container">
+      <app-section-heading
+        eyebrow="What we hold"
+        title="Principles that shape the ashram."
+        description="Not rules on a wall, but a way of meeting each day."
+        align="center"
+        size="md"
+      />
+      <ol class="mt-14 grid gap-x-12 gap-y-10 md:grid-cols-2">
+        @for (principle of principles; track principle.number) {
+          <li class="principle-item group flex gap-6 border-t border-charcoal/15 pt-7 transition-colors duration-500 hover:border-antique-gold">
+            <span class="font-display text-3xl text-antique-gold/80 sm:text-4xl">{{ principle.number }}</span>
+            <div>
+              <h3 class="font-display text-3xl text-midnight-plum sm:text-4xl">{{ principle.title }}</h3>
+              <p class="mt-4 max-w-xl text-sm leading-7 text-charcoal/60">{{ principle.description }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ GURU PARAMPARA ============ -->
+  <section id="guru-parampara" class="parampara-section section-space relative overflow-hidden">
+    <div class="pointer-events-none absolute -right-40 top-40 h-[30rem] w-[30rem] rounded-full bg-antique-gold/10 blur-[120px]"></div>
+    <div class="pointer-events-none absolute -left-40 bottom-40 h-[28rem] w-[28rem] rounded-full bg-royal-burgundy/10 blur-[120px]"></div>
+
+    <div class="bhb-container relative">
+      <app-section-heading
+        eyebrow="Guru Parampara"
+        title="An unbroken line of grace."
+        description="From Śrī Kṛṣṇa to our own gurus, the teaching has passed from heart to heart. Follow the lineage down the tree."
+        align="center"
+        size="md"
+      />
+
+      <div class="mt-6 text-center" data-reveal>
+        <span class="inline-block border border-antique-gold/40 px-5 py-2 text-[0.58rem] font-semibold uppercase tracking-[0.26em] text-royal-burgundy">
+          {{ guruCount }} gurus · one lineage
+        </span>
+      </div>
+
+      <div class="guru-tree relative mt-16">
+        <!-- Spine (static track + scroll-drawn gold fill) -->
+        <div class="pointer-events-none absolute bottom-0 left-5 top-0 w-px bg-antique-gold/20 md:left-1/2" aria-hidden="true">
+          <div class="guru-spine-fill absolute inset-0 origin-top bg-gradient-to-b from-antique-gold via-royal-burgundy to-antique-gold"></div>
+        </div>
+
+        @for (group of guruGroups; track group.label) {
+          <div class="guru-group relative {{ $first ? '' : 'mt-20' }}">
+            <!-- Branch heading -->
+            <div class="guru-branch relative z-10 pl-14 md:pl-0 md:text-center">
+              <span class="absolute left-5 top-5 -ml-2.5 h-5 w-5 rotate-45 border border-antique-gold bg-warm-ivory md:left-1/2" aria-hidden="true"></span>
+              <div class="md:mx-auto md:max-w-xl md:pt-14">
+                <p class="text-[0.58rem] font-semibold uppercase tracking-[0.26em] text-antique-gold">{{ group.label }}</p>
+                <h3 class="mt-3 font-display text-3xl text-midnight-plum sm:text-4xl">{{ group.title }}</h3>
+                <p class="mt-3 text-sm leading-7 text-charcoal/60">{{ group.description }}</p>
+              </div>
+            </div>
+
+            <!-- Gurus -->
+            <ol class="mt-10 space-y-8 md:space-y-6">
+              @for (guru of group.gurus; track guru.number) {
+                <li
+                  class="guru-node relative pl-14 md:grid md:grid-cols-2 md:pl-0"
+                  [class.guru-left]="guru.side === 'left'"
+                >
+                  <!-- Node dot on the spine -->
+                  <span
+                    class="guru-dot absolute left-5 top-9 z-10 -ml-1.5 h-3 w-3 rounded-full border-2 md:left-1/2"
+                    [class]="guru.highlight ? 'border-antique-gold bg-antique-gold' : 'border-antique-gold bg-warm-ivory'"
+                    aria-hidden="true"
+                  ></span>
+
+                  <!-- Branch line from spine to card -->
+                  @if (guru.side === 'left') {
+                    <span class="guru-link absolute left-5 top-[2.6rem] h-px w-9 origin-left bg-antique-gold/50 md:left-auto md:right-1/2 md:w-16 md:origin-right" aria-hidden="true"></span>
+                  } @else {
+                    <span class="guru-link absolute left-5 top-[2.6rem] h-px w-9 origin-left bg-antique-gold/50 md:left-1/2 md:w-16" aria-hidden="true"></span>
+                  }
+
+                  <!-- Card -->
+                  <article
+                    class="guru-card group flex items-center gap-5 border p-4 shadow-soft transition-colors duration-500 hover:border-antique-gold"
+                    [class]="
+                      (guru.side === 'left'
+                        ? 'md:col-start-1 md:mr-16 md:flex-row-reverse md:text-right '
+                        : 'md:col-start-2 md:ml-16 ') +
+                      (guru.highlight
+                        ? 'border-antique-gold/60 bg-midnight-plum text-warm-ivory'
+                        : 'border-antique-gold/25 bg-white/70 text-midnight-plum')
+                    "
+                  >
+                    <!-- Photo (add src later via the `image` field in about.ts) -->
+                    <div
+                      class="guru-photo relative h-28 w-24 shrink-0 overflow-hidden rounded-t-full border border-antique-gold/40 bg-gradient-to-b from-champagne to-champagne/40"
+                    >
+                      @if (guru.image) {
+                        <img
+                          [src]="guru.image"
+                          [alt]="guru.name"
+                          loading="lazy"
+                          class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        />
+                      } @else {
+                        <div class="flex h-full w-full flex-col items-center justify-center gap-1 text-antique-gold">
+                          <span class="font-display text-3xl">{{ guru.label }}</span>
+                          <span class="text-[0.45rem] font-semibold uppercase tracking-[0.2em] text-charcoal/40">Photo</span>
+                        </div>
+                      }
+                    </div>
+
+                    <div class="min-w-0">
+                      <p class="text-[0.55rem] font-semibold uppercase tracking-[0.24em] text-antique-gold">Guru {{ guru.label }}</p>
+                      <h4 class="mt-2 font-display text-2xl leading-tight sm:text-3xl">{{ guru.name }}</h4>
+                    </div>
+                  </article>
+                </li>
+              }
+            </ol>
+          </div>
+        }
+
+        <!-- Tree end -->
+        <div class="relative z-10 mt-14 pl-14 md:pl-0 md:text-center" data-reveal>
+          <span class="absolute left-5 top-1 -ml-2 h-4 w-4 rounded-full bg-antique-gold md:left-1/2 md:top-0" aria-hidden="true"></span>
+          <p class="font-display text-2xl italic text-royal-burgundy md:pt-8">…and the lineage flows on, through every voice that sings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="milestone-section relative isolate overflow-hidden bg-deep-wine py-24 text-warm-ivory sm:py-32">
+    <div
+      class="absolute inset-0 -z-20 bg-cover bg-center opacity-30"
+      [style.background-image]="'url(' + content.finalImage + ')'"
+      data-parallax
+    ></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-deep-wine via-deep-wine/85 to-deep-wine/55"></div>
+    <div class="bhb-container relative grid gap-14 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4" data-reveal>
+        <span class="eyebrow">A living journey</span>
+        <h2 class="mt-7 display-md text-balance">Rooted in one intention.</h2>
+        <blockquote class="mt-8 border-l border-antique-gold/60 pl-6 font-display text-2xl italic leading-snug text-champagne/85">
+          “Where love is the practice, every ordinary moment becomes an offering.”
+        </blockquote>
+      </div>
+      <ol class="lg:col-span-8 border-t border-antique-gold/30">
+        @for (milestone of milestones; track milestone.chapter) {
+          <li class="milestone-item grid gap-3 border-b border-antique-gold/20 py-7 sm:grid-cols-[8rem_1fr] sm:gap-8">
+            <span class="font-display text-xl text-antique-gold sm:text-2xl">{{ milestone.chapter }}</span>
+            <div>
+              <h3 class="font-display text-2xl text-warm-ivory sm:text-3xl">{{ milestone.title }}</h3>
+              <p class="mt-3 max-w-2xl text-sm leading-7 text-champagne/65">{{ milestone.description }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <app-cta-strip
+    eyebrow="Come closer"
+    title="The ashram is open to you."
+    description="Stay for a night, return for the kirtan or simply arrive with a question — there is always room at Bhakti Hriday."
+    primaryLabel="Plan your visit"
+    primaryLink="/contact"
+    secondaryLabel="Reserve a room"
+    secondaryLink="/room-booking"
+  />
+</div>

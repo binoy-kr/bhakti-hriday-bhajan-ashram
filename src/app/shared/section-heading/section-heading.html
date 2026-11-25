@@ -1,0 +1,29 @@
+<div
+  class="flex flex-col gap-5"
+  [class.items-center]="align === 'center'"
+  [class.text-center]="align === 'center'"
+  data-reveal
+>
+  @if (eyebrow) {
+    <span class="eyebrow" [class.justify-center]="align === 'center'">{{ eyebrow }}</span>
+  }
+
+  <h2
+    class="max-w-4xl text-balance"
+    [class.display-lg]="size === 'lg'"
+    [class.display-md]="size === 'md'"
+    [class.text-midnight-plum]="tone === 'dark'"
+    [class.text-warm-ivory]="tone === 'light'"
+  >
+    {{ title }}
+  </h2>
+
+  @if (description) {
+    <p
+      class="max-w-2xl text-pretty text-sm leading-7 sm:text-base"
+      [ngClass]="tone === 'dark' ? 'text-charcoal/65' : 'text-champagne/70'"
+    >
+      {{ description }}
+    </p>
+  }
+</div>

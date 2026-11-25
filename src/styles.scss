@@ -1,0 +1,202 @@
+@use './styles/theme' as theme;
+@use "tailwindcss" as *;
+
+@include theme.bhb-theme;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--bhb-midnight-plum);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--bhb-warm-ivory);
+    color: var(--bhb-charcoal);
+    font-family: var(--bhb-font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    font-family: var(--bhb-font-display);
+    font-weight: 500;
+    line-height: 0.98;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: var(--bhb-antique-gold);
+    color: var(--bhb-midnight-plum);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bhb-midnight-plum);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--bhb-antique-gold) 60%, var(--bhb-deep-wine));
+    border-radius: 999px;
+    border: 2px solid var(--bhb-midnight-plum);
+  }
+}
+
+@layer components {
+  .bhb-container {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  .bhb-narrow {
+    @apply mx-auto w-full max-w-[900px] px-5 sm:px-8;
+  }
+
+  .section-space {
+    @apply py-20 sm:py-24 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-antique-gold sm:text-xs;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-antique-gold;
+  }
+
+  .display-xl {
+    @apply font-display text-[clamp(3rem,8.5vw,8.75rem)] leading-[0.86] tracking-[-0.045em];
+  }
+
+  .display-lg {
+    @apply font-display text-[clamp(2.6rem,6vw,6.25rem)] leading-[0.92] tracking-[-0.04em];
+  }
+
+  .display-md {
+    @apply font-display text-[clamp(2.1rem,4vw,4rem)] leading-[0.98] tracking-[-0.03em];
+  }
+
+  .body-lg {
+    @apply text-base leading-7 text-charcoal/70 sm:text-lg sm:leading-8;
+  }
+
+  .gold-rule {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-antique-gold/70 to-transparent;
+  }
+
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] transition-all duration-500 ease-lux focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-antique-gold;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-antique-gold px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-midnight-plum transition-all duration-500 ease-lux hover:bg-champagne focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-antique-gold;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--bhb-antique-gold) 28%, transparent);
+  }
+
+  .btn-outline-light {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-champagne/35 px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-champagne transition-all duration-500 ease-lux hover:border-antique-gold hover:bg-antique-gold/10 hover:text-antique-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-antique-gold;
+  }
+
+  .btn-outline-dark {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-midnight-plum/20 px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-midnight-plum transition-all duration-500 ease-lux hover:border-royal-burgundy hover:bg-royal-burgundy hover:text-warm-ivory focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-antique-gold;
+  }
+
+  .glass-panel {
+    @apply border border-champagne/20 shadow-gold backdrop-blur-2xl;
+    background-color: color-mix(in srgb, var(--bhb-midnight-plum) 58%, transparent);
+  }
+
+  .image-mask {
+    @apply overflow-hidden rounded-[2rem] sm:rounded-[3rem];
+  }
+
+  .field-label {
+    @apply mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-charcoal/60;
+  }
+
+  .field-control {
+    @apply w-full rounded-2xl border border-charcoal/15 bg-warm-ivory px-4 py-3.5 text-sm text-charcoal outline-none transition duration-300 placeholder:text-charcoal/35 focus:border-antique-gold focus:bg-pure-white;
+  }
+
+  .field-control:focus {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--bhb-antique-gold) 12%, transparent);
+  }
+
+  .field-dark {
+    @apply w-full rounded-2xl border border-champagne/20 px-4 py-3.5 text-sm text-champagne outline-none transition duration-300 placeholder:text-champagne/35 focus:border-antique-gold;
+    background-color: color-mix(in srgb, var(--bhb-pure-white) 5%, transparent);
+  }
+
+  .field-dark:focus {
+    background-color: color-mix(in srgb, var(--bhb-pure-white) 9%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--bhb-antique-gold) 12%, transparent);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bg-grain {
+    background-image: radial-gradient(color-mix(in srgb, var(--bhb-champagne) 6%, transparent) 0.7px, transparent 0.7px);
+    background-size: 7px 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

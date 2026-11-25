@@ -1,0 +1,21 @@
+@if (!done()) {
+  <div
+    #overlay
+    class="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-midnight-plum"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="preloader-mark">
+      <app-logo variant="compact" [showText]="false" />
+    </div>
+
+    <div class="preloader-line mt-8 flex w-40 gap-2">
+      <span class="h-px flex-1 origin-left bg-antique-gold"></span>
+      <span class="h-px flex-1 origin-left bg-rose-dust"></span>
+    </div>
+
+    <p class="preloader-text mt-5 text-[0.6rem] font-semibold uppercase tracking-[0.45em] text-champagne/60">
+      Entering the sacred
+    </p>
+  </div>
+}

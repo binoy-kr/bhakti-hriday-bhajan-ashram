@@ -1,0 +1,37 @@
+<a
+  routerLink="/"
+  class="group inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-antique-gold"
+  [attr.aria-label]="'Bhakti Hriday Bhajan Ashram — home'"
+>
+  <svg
+    viewBox="0 0 72 72"
+    class="h-11 w-11 shrink-0 transition-transform duration-700 ease-lux group-hover:-rotate-6 sm:h-12 sm:w-12"
+    [class.text-midnight-plum]="variant === 'light'"
+    [class.text-champagne]="variant === 'dark'"
+    [class.text-antique-gold]="variant === 'compact'"
+    fill="none"
+    aria-hidden="true"
+  >
+    <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M36 9c5.4 6.9 8.2 13.2 8.2 19 0 6.5-3.5 11.6-8.2 15.6-4.7-4-8.2-9.1-8.2-15.6 0-5.8 2.8-12.1 8.2-19Z" opacity=".95" />
+      <path d="M23 15c2 7.3 1.8 13.7-.8 19.5M49 15c-2 7.3-1.8 13.7.8 19.5" opacity=".7" />
+      <path d="M14 36c7.4-5.2 15.2-7.9 22-7.9s14.6 2.7 22 7.9c-7.4 5.2-15.2 7.9-22 7.9S21.4 41.2 14 36Z" opacity=".9" />
+      <path d="M20 47c5.9 3.1 11.2 4.6 16 4.6s10.1-1.5 16-4.6" opacity=".6" />
+      <path d="M25 56h22M30 61h12" opacity=".85" />
+      <path d="M36 24v31" opacity=".35" />
+      <circle cx="36" cy="31" r="2.6" fill="currentColor" stroke="none" opacity=".9" />
+    </g>
+  </svg>
+
+  @if (showText) {
+    <span
+      class="flex flex-col leading-none"
+      [class.text-midnight-plum]="variant === 'light'"
+      [class.text-champagne]="variant === 'dark'"
+      [class.text-antique-gold]="variant === 'compact'"
+    >
+      <span class="font-display text-[1.05rem] font-semibold tracking-[0.14em] sm:text-lg">BHAKTI HRIDAY</span>
+      <span class="mt-1 text-[0.5rem] font-semibold uppercase tracking-[0.42em] opacity-70 sm:text-[0.58rem]">Bhajan Ashram</span>
+    </span>
+  }
+</a>

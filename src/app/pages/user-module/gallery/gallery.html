@@ -1,0 +1,158 @@
+<div #galleryRoot class="overflow-hidden bg-warm-ivory font-body">
+  <app-page-hero
+    eyebrow="Darshan gallery"
+    title="Glimpses of the divine, held in light."
+    description="Sacred art, festival color and the quiet beauty of ashram life — collected like petals around a single memory."
+    [image]="content.heroImage"
+    size="tall"
+    tone="dark"
+  >
+    <a href="#gallery-grid" class="btn-primary" data-magnetic>Explore the collection</a>
+    <a routerLink="/contact" class="btn-outline-light" data-magnetic>Plan a darshan</a>
+  </app-page-hero>
+
+  <section class="section-space relative">
+    <div class="bhb-container grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
+      <div class="lg:col-span-7" data-reveal>
+        <span class="eyebrow">A visual journal</span>
+        <h2 class="mt-7 display-md text-balance text-midnight-plum">
+          Moments that linger long after the lamps are dimmed.
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:pt-10" data-reveal>
+        <p class="body-lg">
+          Every image here is a small doorway — into a melody, a festival morning, a painted moment of Radha and Krishna that feels startlingly present.
+        </p>
+        <p class="mt-5 text-sm leading-8 text-charcoal/55">
+          Move through the collection slowly. Let the colors, gestures and stillness speak before the words do.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery-grid" class="relative bg-champagne/30 py-20 sm:py-24">
+    <div class="bhb-container">
+      <div class="flex flex-col gap-9 lg:flex-row lg:items-end lg:justify-between">
+        <app-section-heading
+          eyebrow="The collection"
+          title="Choose a thread of memory."
+          description="Filter the archive by the feeling you are looking for."
+          size="md"
+        />
+        <div
+          class="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"
+          role="group"
+          aria-label="Filter gallery by category"
+          data-reveal
+        >
+          @for (category of categories; track category) {
+            <button
+              type="button"
+              class="min-h-11 shrink-0 rounded-full border px-5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] transition-all duration-500 ease-lux"
+              [ngClass]="
+                activeCategory() === category
+                  ? 'border-antique-gold bg-antique-gold text-midnight-plum'
+                  : 'border-charcoal/15 text-charcoal/60 hover:border-antique-gold hover:text-royal-burgundy'
+              "
+              [attr.aria-pressed]="activeCategory() === category"
+              (click)="selectCategory(category)"
+            >
+              {{ category }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <p class="mt-9 text-[0.6rem] font-semibold uppercase tracking-[0.24em] text-charcoal/45">
+        Showing {{ filteredImages().length }} of {{ content.gallery.length }} frames · {{ activeCategory() }}
+      </p>
+
+      @if (filteredImages().length) {
+        <div class="masonry mt-7">
+          @for (image of filteredImages(); track image.id) {
+            <button
+              type="button"
+              class="gallery-item group relative block w-full overflow-hidden rounded-[1.6rem] border border-charcoal/5 text-left shadow-soft transition-all duration-700 ease-lux hover:border-antique-gold/60"
+              [attr.aria-label]="'Open ' + image.title + ' in the image preview'"
+              (click)="openImage($index)"
+            >
+              <img
+                [src]="image.src"
+                [alt]="image.alt"
+                loading="lazy"
+                class="w-full object-cover transition-transform duration-[1.3s] ease-lux group-hover:scale-105"
+                [ngClass]="{
+                  'aspect-[3/4]': image.span === 'tall',
+                  'aspect-[16/10]': image.span === 'wide',
+                  'aspect-square': image.span === 'normal'
+                }"
+              />
+              <span class="absolute inset-0 bg-gradient-to-t from-midnight-plum/80 via-midnight-plum/5 to-transparent"></span>
+              <span
+                class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-champagne/30 bg-midnight-plum/50 text-champagne opacity-0 transition-all duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
+                aria-hidden="true"
+              >
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M9 4H4v5M15 4h5v5M15 20h5v-5M9 20H4v-5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span class="absolute bottom-5 left-5 right-5">
+                <span class="block text-[0.55rem] font-semibold uppercase tracking-[0.24em] text-antique-gold">{{ image.category }}</span>
+                <span class="mt-2 block font-display text-2xl leading-tight text-warm-ivory sm:text-3xl">{{ image.title }}</span>
+              </span>
+            </button>
+          }
+        </div>
+      } @else {
+        <div class="mt-7 rounded-[2rem] border border-antique-gold/35 bg-warm-ivory p-10 text-center sm:p-14" data-reveal>
+          <span class="eyebrow justify-center">Still gathering</span>
+          <h3 class="mx-auto mt-6 max-w-2xl display-md text-midnight-plum text-balance">
+            This collection is being prepared with care.
+          </h3>
+          <p class="mx-auto mt-5 max-w-xl text-sm leading-8 text-charcoal/60">
+            There are no seva frames in the archive just yet. Meanwhile, the other categories hold many moments worth lingering over.
+          </p>
+          <button type="button" class="btn-outline-dark mt-8" (click)="selectCategory('All')" data-magnetic>
+            View all frames
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="relative isolate overflow-hidden bg-deep-wine py-24 text-warm-ivory sm:py-32">
+    <div
+      class="absolute inset-0 -z-20 bg-cover bg-center opacity-25"
+      [style.background-image]="'url(' + content.finalImage + ')'"
+      data-parallax
+    ></div>
+    <div class="absolute inset-0 -z-10 bg-deep-wine/80"></div>
+    <div class="bhb-container relative mx-auto max-w-3xl text-center" data-reveal>
+      <span class="eyebrow justify-center">Beyond the frame</span>
+      <h2 class="mt-7 display-md text-balance">The most beautiful darshan is the one you enter.</h2>
+      <p class="mx-auto mt-7 max-w-2xl text-sm leading-8 text-champagne/70 sm:text-base">
+        Images can only hint at the fragrance of flowers, the rise of a shared voice and the hush that follows a lamp being lit.
+      </p>
+      <a routerLink="/contact" class="btn-primary mt-10" data-magnetic> Come see it for yourself </a>
+    </div>
+  </section>
+
+  <app-cta-strip
+    eyebrow="Continue the journey"
+    title="There is always more to witness."
+    description="Stay for the evening kirtan, return for a festival or simply sit where the paintings seem to breathe."
+    primaryLabel="Plan your visit"
+    primaryLink="/contact"
+    secondaryLabel="Reserve a room"
+    secondaryLink="/room-booking"
+  />
+
+  @if (activeIndex() >= 0) {
+    <app-image-lightbox
+      [images]="filteredImages()"
+      [index]="activeIndex()"
+      (indexChange)="activeIndex.set($event)"
+      (closed)="closeImage()"
+    />
+  }
+</div>

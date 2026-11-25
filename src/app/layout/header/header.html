@@ -1,0 +1,85 @@
+<header
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-lux"
+  [ngClass]="scrolled() ? 'bg-warm-ivory/95 shadow-[0_12px_40px_color-mix(in_srgb,var(--bhb-midnight-plum)_8%,transparent)] backdrop-blur-xl' : 'bg-transparent'"
+>
+  <div class="hidden border-b border-champagne/10 bg-midnight-plum text-champagne/60 lg:block">
+    <div class="bhb-container flex h-9 items-center justify-between text-[0.58rem] font-semibold uppercase tracking-[0.24em]">
+      <span>Mayapur · West Bengal · India</span>
+      <span>Darshan 06:00 — 20:30 · All are welcome</span>
+    </div>
+  </div>
+
+  <div class="bhb-container">
+    <div class="flex h-[4.5rem] items-center justify-between gap-6 lg:h-20">
+      <app-logo [variant]="scrolled() ? 'light' : 'dark'" />
+
+      <nav class="hidden items-center gap-5 xl:flex" aria-label="Main navigation">
+        @for (link of links; track link.path) {
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="text-antique-gold"
+            [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+            class="group relative py-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] transition-colors duration-300"
+            [ngClass]="scrolled() ? 'text-charcoal/65 hover:text-royal-burgundy' : 'text-champagne/70 hover:text-antique-gold'"
+          >
+            {{ link.label }}
+            <span class="absolute -bottom-0.5 left-0 h-px w-0 bg-antique-gold transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        }
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a
+          routerLink="/auth/login"
+          class="hidden text-[0.66rem] font-semibold uppercase tracking-[0.16em] transition hover:text-antique-gold lg:inline-flex"
+          [ngClass]="scrolled() ? 'text-charcoal/60' : 'text-champagne/70'"
+        >
+          Login
+        </a>
+        <a routerLink="/donation" class="btn-primary hidden !min-h-10 !px-5 !py-2 sm:inline-flex" data-magnetic>
+          Donate Now
+        </a>
+        <button
+          type="button"
+          class="flex h-11 w-11 items-center justify-center rounded-full border transition xl:hidden"
+          [ngClass]="scrolled() ? 'border-charcoal/15 text-midnight-plum' : 'border-champagne/25 text-champagne'"
+          [attr.aria-expanded]="menuOpen()"
+          aria-controls="bhb-mobile-navigation"
+          aria-label="Toggle navigation"
+          (click)="toggleMenu()"
+        >
+          @if (menuOpen()) {
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+            </svg>
+          } @else {
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+            </svg>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+
+  @if (menuOpen()) {
+    <div class="border-t border-charcoal/10 bg-warm-ivory text-midnight-plum xl:hidden">
+      <nav id="bhb-mobile-navigation" class="bhb-container grid gap-1 py-6" aria-label="Mobile navigation">
+        @for (link of links; track link.path) {
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="text-royal-burgundy"
+            (click)="closeMenu()"
+            class="border-b border-charcoal/5 py-3 font-display text-2xl"
+          >
+            {{ link.label }}
+          </a>
+        }
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a routerLink="/auth/login" (click)="closeMenu()" class="btn-outline-dark">Login</a>
+          <a routerLink="/admin" (click)="closeMenu()" class="btn-outline-dark">Admin</a>
+        </div>
+      </nav>
+    </div>
+  }
+</header>

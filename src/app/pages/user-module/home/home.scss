@@ -1,0 +1,35 @@
+.hero-char {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform;
+}
+
+.masonry {
+  column-count: 2;
+  column-gap: 1.25rem;
+}
+
+.masonry .gallery-item img {
+  aspect-ratio: 4 / 3;
+}
+
+.masonry .gallery-item:nth-child(3n + 1) img {
+  aspect-ratio: 3 / 4;
+}
+
+.masonry .gallery-item:nth-child(4n + 3) img {
+  aspect-ratio: 1 / 1;
+}
+
+@media (min-width: 1024px) {
+  .masonry {
+    column-count: 3;
+    column-gap: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .masonry {
+    column-count: 1;
+  }
+}

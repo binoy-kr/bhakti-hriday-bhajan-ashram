@@ -1,0 +1,322 @@
+<div #dashboardRoot class="min-w-0 font-body text-midnight-plum">
+  <header class="flex flex-wrap items-end justify-between gap-5" data-reveal>
+    <div class="min-w-0">
+      <span class="eyebrow">Seva desk overview</span>
+      <h1 class="mt-5 display-md text-balance text-midnight-plum">Welcome back, Ashram Admin.</h1>
+      <p class="mt-4 max-w-2xl text-sm leading-7 text-charcoal/60 sm:text-base">
+        A quiet view of donations, guest stays and the days ahead in Vrindavan.
+      </p>
+    </div>
+    <div class="flex items-center gap-2 rounded-full border border-antique-gold/30 bg-pure-white px-4 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-royal-burgundy shadow-soft">
+      <span class="h-2 w-2 rounded-full bg-antique-gold" aria-hidden="true"></span>
+      {{ today }}
+    </div>
+  </header>
+
+  <section id="stats" class="mt-9 grid gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-label="Key statistics">
+    @for (stat of stats; track stat.label) {
+      <article class="min-w-0 rounded-[1.75rem] border border-midnight-plum/10 bg-pure-white p-5 shadow-soft transition-transform duration-500 ease-lux hover:-translate-y-1" data-stat>
+        <div class="flex items-start justify-between gap-3">
+          <span
+            class="flex h-10 w-10 items-center justify-center rounded-[0.9rem]"
+            [ngClass]="{
+              'bg-antique-gold/20 text-royal-burgundy': stat.tone === 'gold',
+              'bg-peacock-teal/15 text-peacock-teal': stat.tone === 'teal',
+              'bg-rose-dust/25 text-royal-burgundy': stat.tone === 'rose',
+              'bg-royal-burgundy/15 text-royal-burgundy': stat.tone === 'burgundy'
+            }"
+            aria-hidden="true"
+          >
+            @switch (stat.icon) {
+              @case ('users') {
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="9" cy="8" r="3" />
+                  <path d="M3 20c1.4-3.2 3.4-4.8 6-4.8s4.6 1.6 6 4.8" stroke-linecap="round" />
+                  <path d="M16 5.5a3 3 0 0 1 0 5.8M17 15.4c2 .6 3.3 2.1 4 4.6" stroke-linecap="round" />
+                </svg>
+              }
+              @case ('heart') {
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 20s-7-4.5-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.5-7 9-7 9Z" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              }
+              @case ('music') {
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M9 18V6l10-2v12" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="16" cy="16" r="3" />
+                </svg>
+              }
+              @default {
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 11 12 4l8 7" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M6 10v10h12V10M10 20v-6h4v6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              }
+            }
+          </span>
+          <span class="text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-charcoal/35">Snapshot</span>
+        </div>
+        <p class="mt-6 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-charcoal/50">{{ stat.label }}</p>
+        @if (stat.countable) {
+          <p class="mt-2 font-display text-[2.4rem] leading-none text-midnight-plum" [attr.data-count]="stat.count">{{ stat.value }}</p>
+        } @else {
+          <p class="mt-2 font-display text-[2.4rem] leading-none text-midnight-plum">{{ stat.value }}</p>
+        }
+        <p class="mt-3 text-xs leading-6 text-charcoal/55">{{ stat.detail }}</p>
+      </article>
+    }
+  </section>
+
+  <div class="mt-6 grid gap-6 xl:grid-cols-12">
+    <section class="min-w-0 rounded-[2rem] border border-midnight-plum/10 bg-pure-white p-6 shadow-soft sm:p-7 xl:col-span-7" aria-labelledby="analytics-title" data-reveal>
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div class="min-w-0">
+          <span class="eyebrow !text-royal-burgundy">Giving rhythm</span>
+          <h2 id="analytics-title" class="mt-4 font-display text-2xl text-midnight-plum sm:text-3xl">Donation analytics</h2>
+        </div>
+        <span class="rounded-full border border-antique-gold/30 bg-warm-ivory px-4 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-royal-burgundy">
+          Twelve months
+        </span>
+      </div>
+
+      <div class="relative mt-7 h-48 overflow-hidden rounded-[1.5rem] border border-midnight-plum/5 bg-warm-ivory px-3 pb-7 pt-5 sm:px-5" role="img" aria-label="Bar chart showing the twelve-month donation trend">
+        <div class="absolute inset-x-3 bottom-7 top-5 flex flex-col justify-between sm:inset-x-5" aria-hidden="true">
+          <span class="border-t border-dashed border-midnight-plum/10"></span>
+          <span class="border-t border-dashed border-midnight-plum/10"></span>
+          <span class="border-t border-dashed border-midnight-plum/10"></span>
+          <span class="border-t border-midnight-plum/10"></span>
+        </div>
+        <div class="absolute inset-x-3 bottom-7 top-5 flex items-end gap-1.5 sm:inset-x-5 sm:gap-2.5" aria-hidden="true">
+          @for (value of chart; track $index) {
+            <div class="flex h-full min-w-0 flex-1 items-end">
+              <span
+                class="w-full rounded-t-md bg-gradient-to-t from-antique-gold/35 via-antique-gold/70 to-antique-gold transition-all duration-700 ease-lux"
+                [style.height.%]="(value / chartMax) * 100"
+              ></span>
+            </div>
+          }
+        </div>
+        <div class="absolute inset-x-3 bottom-2 flex gap-1.5 sm:inset-x-5 sm:gap-2.5" aria-hidden="true">
+          @for (month of months; track $index) {
+            <span class="min-w-0 flex-1 text-center text-[0.5rem] font-semibold uppercase tracking-[0.08em] text-charcoal/40">{{ month }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-midnight-plum/10 pt-5">
+        <p class="text-xs leading-6 text-charcoal/55">Monthly index of giving across the ashram.</p>
+        <p class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-royal-burgundy">
+          Peak · {{ peakMonth }} <span class="text-antique-gold">{{ chartMax }}</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="min-w-0 rounded-[2rem] border border-midnight-plum/10 bg-pure-white p-6 shadow-soft sm:p-7 xl:col-span-5" aria-labelledby="activity-title" data-reveal>
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div class="min-w-0">
+          <span class="eyebrow !text-royal-burgundy">Latest moments</span>
+          <h2 id="activity-title" class="mt-4 font-display text-2xl text-midnight-plum sm:text-3xl">Recent activity</h2>
+        </div>
+        <span class="rounded-full border border-antique-gold/30 bg-warm-ivory px-4 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-royal-burgundy">
+          Today
+        </span>
+      </div>
+
+      <ol class="mt-7 space-y-6">
+        @for (activity of activities; track activity.id) {
+          <li class="relative flex gap-4">
+            @if (!$last) {
+              <span class="absolute left-[1.1rem] top-10 h-[calc(100%+0.5rem)] w-px bg-midnight-plum/10" aria-hidden="true"></span>
+            }
+            <span class="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-antique-gold/40 bg-antique-gold/10 text-royal-burgundy" aria-hidden="true">
+              @switch (activity.icon) {
+                @case ('gift') {
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 10h16v10H4zM3 7h18v3H3zM12 7v13" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 7C9 7 8 6 8 4.8A2 2 0 0 1 12 4a2 2 0 0 1 4 .8C16 6 15 7 12 7Z" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('calendar') {
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="4" y="5" width="16" height="15" rx="3" />
+                    <path d="M8 3v4M16 3v4M4 10h16" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('sparkle') {
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 3c1.2 4.4 2.4 5.6 7 7-4.6 1.4-5.8 2.6-7 7-1.2-4.4-2.4-5.6-7-7 4.6-1.4 5.8-2.6 7-7Z" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                }
+                @default {
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="9" cy="8" r="3" />
+                    <path d="M3 20c1.4-3.2 3.4-4.8 6-4.8s4.6 1.6 6 4.8" stroke-linecap="round" />
+                    <path d="M16 5.5a3 3 0 0 1 0 5.8" stroke-linecap="round" />
+                  </svg>
+                }
+              }
+            </span>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                <p class="text-sm font-semibold text-midnight-plum">{{ activity.title }}</p>
+                <time class="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-charcoal/40">{{ activity.time }}</time>
+              </div>
+              <p class="mt-1 text-xs leading-6 text-charcoal/55">{{ activity.detail }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+    </section>
+  </div>
+
+  <div class="mt-6 grid gap-6 xl:grid-cols-2">
+    <section class="min-w-0 rounded-[2rem] border border-midnight-plum/10 bg-pure-white p-6 shadow-soft sm:p-7" aria-labelledby="donations-title" data-reveal>
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div class="min-w-0">
+          <span class="eyebrow !text-royal-burgundy">Seva received</span>
+          <h2 id="donations-title" class="mt-4 font-display text-2xl text-midnight-plum sm:text-3xl">Recent donations</h2>
+        </div>
+        <span class="rounded-full border border-antique-gold/30 bg-warm-ivory px-4 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-royal-burgundy">
+          Latest five
+        </span>
+      </div>
+
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full min-w-[620px] border-collapse text-left">
+          <caption class="sr-only">Recent donations with donor, amount, purpose, date and status</caption>
+          <thead>
+            <tr class="border-b border-midnight-plum/10">
+              <th scope="col" class="py-3 pr-4 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Donor</th>
+              <th scope="col" class="py-3 pr-4 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Amount</th>
+              <th scope="col" class="py-3 pr-4 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Purpose</th>
+              <th scope="col" class="py-3 pr-4 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Date</th>
+              <th scope="col" class="py-3 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (donation of donations; track donation.id) {
+              <tr class="border-b border-midnight-plum/5 last:border-0">
+                <td class="py-4 pr-4">
+                  <p class="text-sm font-semibold text-midnight-plum">{{ donation.donor }}</p>
+                  <p class="mt-1 text-[0.62rem] uppercase tracking-[0.14em] text-charcoal/40">{{ donation.id }}</p>
+                </td>
+                <td class="py-4 pr-4 font-display text-lg text-royal-burgundy">{{ formatAmount(donation.amount) }}</td>
+                <td class="py-4 pr-4 text-xs text-charcoal/60">{{ donation.purpose }}</td>
+                <td class="py-4 pr-4 text-xs text-charcoal/60">{{ donation.date }}</td>
+                <td class="py-4">
+                  <span
+                    class="inline-flex rounded-full px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.14em]"
+                    [ngClass]="
+                      donation.status === 'Completed'
+                        ? 'bg-peacock-teal/10 text-peacock-teal'
+                        : 'bg-antique-gold/15 text-royal-burgundy'
+                    "
+                  >
+                    {{ donation.status }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="min-w-0 rounded-[2rem] border border-midnight-plum/10 bg-pure-white p-6 shadow-soft sm:p-7" aria-labelledby="bookings-title" data-reveal>
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div class="min-w-0">
+          <span class="eyebrow !text-royal-burgundy">Guest care</span>
+          <h2 id="bookings-title" class="mt-4 font-display text-2xl text-midnight-plum sm:text-3xl">Recent room bookings</h2>
+        </div>
+        <span class="rounded-full border border-antique-gold/30 bg-warm-ivory px-4 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-royal-burgundy">
+          Latest four
+        </span>
+      </div>
+
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full min-w-[640px] border-collapse text-left">
+          <caption class="sr-only">Recent room bookings with guest, room, check-in date, nights and status</caption>
+          <thead>
+            <tr class="border-b border-midnight-plum/10">
+              <th scope="col" class="py-3 pr-4 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Guest</th>
+              <th scope="col" class="py-3 pr-4 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Room</th>
+              <th scope="col" class="py-3 pr-4 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Check-in</th>
+              <th scope="col" class="py-3 pr-4 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Nights</th>
+              <th scope="col" class="py-3 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-charcoal/45">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (booking of bookings; track booking.id) {
+              <tr class="border-b border-midnight-plum/5 last:border-0">
+                <td class="py-4 pr-4">
+                  <p class="text-sm font-semibold text-midnight-plum">{{ booking.guest }}</p>
+                  <p class="mt-1 text-[0.62rem] uppercase tracking-[0.14em] text-charcoal/40">{{ booking.id }}</p>
+                </td>
+                <td class="py-4 pr-4 text-xs text-charcoal/60">{{ booking.room }}</td>
+                <td class="py-4 pr-4 text-xs text-charcoal/60">{{ booking.checkIn }}</td>
+                <td class="py-4 pr-4 text-xs text-charcoal/60">{{ booking.nights }}</td>
+                <td class="py-4">
+                  <span
+                    class="inline-flex rounded-full px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.14em]"
+                    [ngClass]="
+                      booking.status === 'Confirmed'
+                        ? 'bg-peacock-teal/10 text-peacock-teal'
+                        : 'bg-antique-gold/15 text-royal-burgundy'
+                    "
+                  >
+                    {{ booking.status }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <section class="mt-6 rounded-[2rem] border border-midnight-plum/10 bg-pure-white p-6 shadow-soft sm:p-7" aria-labelledby="festivals-title" data-reveal>
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div class="min-w-0">
+        <span class="eyebrow !text-royal-burgundy">On the horizon</span>
+        <h2 id="festivals-title" class="mt-4 font-display text-2xl text-midnight-plum sm:text-3xl">Upcoming festivals</h2>
+      </div>
+      <span class="rounded-full border border-antique-gold/30 bg-warm-ivory px-4 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-royal-burgundy">
+        Next three
+      </span>
+    </div>
+
+    <div class="mt-7 grid gap-4 md:grid-cols-3">
+      @for (festival of festivals; track festival.id) {
+        <article class="min-w-0 rounded-[1.5rem] border border-midnight-plum/10 bg-warm-ivory p-5" data-reveal>
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-royal-burgundy">{{ festival.date }}</span>
+            <span
+              class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full"
+              [ngClass]="{
+                'bg-antique-gold': festival.accent === 'gold',
+                'bg-peacock-teal': festival.accent === 'teal',
+                'bg-rose-dust': festival.accent === 'rose',
+                'bg-royal-burgundy': festival.accent === 'burgundy'
+              }"
+              aria-hidden="true"
+            ></span>
+          </div>
+          <h3 class="mt-5 font-display text-2xl text-midnight-plum">{{ festival.name }}</h3>
+          <p class="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-charcoal/45">
+            {{ festival.month }} · {{ festival.place }}
+          </p>
+          <p class="mt-4 text-xs leading-6 text-charcoal/55">{{ festival.description }}</p>
+          <div class="mt-5 flex items-center gap-2 border-t border-midnight-plum/10 pt-4 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-royal-burgundy">
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="4" y="5" width="16" height="15" rx="3" />
+              <path d="M8 3v4M16 3v4M4 10h16" stroke-linecap="round" />
+            </svg>
+            Celebration scheduled
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</div>

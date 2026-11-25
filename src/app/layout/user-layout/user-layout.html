@@ -1,0 +1,20 @@
+<app-header />
+
+<main>
+  <router-outlet />
+</main>
+
+<app-footer />
+
+@if (showTop()) {
+  <button
+    type="button"
+    class="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-antique-gold/40 bg-midnight-plum text-antique-gold shadow-gold transition hover:bg-antique-gold hover:text-midnight-plum"
+    aria-label="Back to top"
+    (click)="toTop()"
+  >
+    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 19V5M6 11l6-6 6 6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+}

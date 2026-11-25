@@ -1,0 +1,24 @@
+<figure class="group image-mask relative bg-deep-wine" data-reveal>
+  <div
+    class="overflow-hidden"
+    [ngClass]="{
+      'aspect-[4/5]': ratio === 'portrait',
+      'aspect-[16/10]': ratio === 'landscape',
+      'aspect-square': ratio === 'square'
+    }"
+  >
+    <img
+      [src]="src"
+      [alt]="alt"
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-[1.4s] ease-lux group-hover:scale-105"
+    />
+  </div>
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-midnight-plum/70 via-transparent to-transparent opacity-60"></div>
+  <ng-content />
+  @if (caption) {
+    <figcaption class="absolute bottom-5 left-6 right-6 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-champagne/85">
+      {{ caption }}
+    </figcaption>
+  }
+</figure>

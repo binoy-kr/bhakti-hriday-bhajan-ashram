@@ -1,0 +1,38 @@
+$colors: (
+  midnight-plum: #241321,
+  royal-burgundy: #681c3a,
+  deep-wine: #40182d,
+  antique-gold: #c9a45c,
+  champagne: #f2e4c8,
+  warm-ivory: #faf6ef,
+  peacock-teal: #176b70,
+  rose-dust: #b98791,
+  charcoal: #29242a,
+  pure-white: #ffffff
+);
+
+@mixin bhb-theme {
+  :root {
+    @each $name, $value in $colors {
+      --bhb-#{$name}: #{$value};
+    }
+
+    --bhb-font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+    --bhb-font-body: "Manrope", "Inter", system-ui, -apple-system, sans-serif;
+    --bhb-ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+    --bhb-shadow-glow: 0 24px 80px rgb(36 19 33 / 0.38);
+    --bhb-shadow-soft: 0 18px 50px rgb(36 19 33 / 0.12);
+  }
+
+  @theme inline {
+    @each $name, $value in $colors {
+      --color-#{$name}: var(--bhb-#{$name});
+    }
+
+    --font-display: var(--bhb-font-display);
+    --font-body: var(--bhb-font-body);
+    --ease-lux: var(--bhb-ease-lux);
+    --shadow-gold: var(--bhb-shadow-glow);
+    --shadow-soft: var(--bhb-shadow-soft);
+  }
+}
